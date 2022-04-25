@@ -1,28 +1,32 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-navigation-drawer app  dark permanent width="200" v-if="authenticated">
+      <main-nav></main-nav>
+    </v-navigation-drawer>
+
+    <v-main>
+      <router-view />
+    </v-main>
+    <messages></messages>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { mapGetters, mapState } from 'vuex';
+import MainNav from './components/MainNav';
+import Messages from './components/Messages';
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  components: {
+    MainNav,
+    messages: Messages,
+  },
+
+  computed: {
+    ...mapState('auth', {
+      authenticated: 'authenticated',
+    }),
+  },
+};
+</script>
