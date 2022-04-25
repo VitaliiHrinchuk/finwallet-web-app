@@ -4,6 +4,7 @@ import vuetify from './plugins/vuetify'
 import router from './router';
 import store from './store';
 import moment from 'moment';
+import './scss/main.scss';
 
 Vue.prototype.$moment = moment;
 

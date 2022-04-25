@@ -5,38 +5,87 @@ const http = httpFactory(URL);
 
 const api = {
   auth: {
-    login: function(params) {
+    login(params) {
       return http.post('/auth/login', params);
     },
-    // register: function(params) {
-    //   return http.post('/register', params);
-    // },
+    register: function(params) {
+      return http.post('/auth/register', params);
+    },
 
-    // list: function() {
-    //   return http.get('/users');
-    // },
-    // update: function(uuid, params) {
-    //   return http.put(`/users/${uuid}`, params);
-    // },
   },
   user: {
-    iam: function() {
+    iam() {
       return http.get('/user/iam');
     },
   },
-  accounts: {
-
+  account: {
+    browse(params = {}) {
+      return http.get('/accounts', { params })
+    },
+    create(body){
+      return http.post(`/accounts`, body);
+    },
+    read(id) {
+      return http.get(`/accounts/${id}`);
+    },
+    update(id, body) {
+      return http.patch(`/accounts/${id}`, body);
+    },
+    remove(id){
+      return http.delete(`/accounts/${id}`);
+    }
   },
-  categories: {
-
+  category: {
+    browse(params = {}) {
+      return http.get('/category', { params })
+    },
+    create(body){
+      return http.post(`/category`, body);
+    },
+    read(id) {
+      return http.get(`/category/${id}`);
+    },
+    update(id, body) {
+      return http.patch(`/category/${id}`, body);
+    },
+    remove(id){
+      return http.delete(`/category/${id}`);
+    }
   },
-  tags: {
-
+  tag: {
+    browse(params = {}) {
+      return http.get('/tag', { params })
+    },
+    create(body){
+      return http.post(`/tag`, body);
+    },
+    read(id) {
+      return http.get(`/tag/${id}`);
+    },
+    update(id, body) {
+      return http.patch(`/tag/${id}`, body);
+    },
+    remove(id){
+      return http.delete(`/tag/${id}`);
+    }
   },
-  transactions: {
-
+  transaction: {
+    browse(params = {}) {
+      return http.get('/transaction', { params })
+    },
+    create(body){
+      return http.post(`/transaction`, body);
+    },
+    read(id) {
+      return http.get(`/transaction/${id}`);
+    },
+    update(id, body) {
+      return http.patch(`/transaction/${id}`, body);
+    },
+    remove(id){
+      return http.delete(`/transaction/${id}`);
+    }
   },
-
 };
 
 export default api;

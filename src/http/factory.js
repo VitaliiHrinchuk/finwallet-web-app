@@ -55,6 +55,9 @@ export default (baseURL) => {
     put: (url, payload = null) => {
       return client.put(url, convertToFormdata(payload));
     },
+    patch: (url, payload = null) => {
+      return client.patch(url, convertToFormdata(payload));
+    },
     delete: (url, payload = null) => {
       return client.delete(url, convertToFormdata(payload));
     },
