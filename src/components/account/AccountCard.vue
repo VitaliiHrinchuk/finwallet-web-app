@@ -5,7 +5,9 @@
         <v-sheet
             class="rounded-circle mx-3 d-block"
             elevation="0"
-            width="100%"
+            width="20"
+            height="20"
+            style="padding: 50%"
             :color="accountColor"
         >
           <span>&nbsp;</span>

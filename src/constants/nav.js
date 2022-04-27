@@ -4,11 +4,11 @@ const NAV_ITEMS = [
         icon: 'mdi-home',
         title: 'Home',
     },
-    // {
-    //     path: 'accounts.list',
-    //     icon: 'mdi-select-group',
-    //     title: 'Accounts',
-    // },
+    {
+        path: 'account.index',
+        icon: 'mdi-select-group',
+        title: 'Accounts',
+    },
     // {
     //     path: 'statistics.list',
     //     icon: 'mdi-select-group',

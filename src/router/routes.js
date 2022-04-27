@@ -16,6 +16,18 @@ let routes = [
         '../views/auth/AuthLogin.vue'
       ),
   },
+  {
+    path: '/accounts/',
+    name: 'account.index',
+    meta: {
+      auth: true,
+    },
+    component: () =>
+      import(
+        /* webpackChunkName: "accounts.index" */
+        '../views/account/AccountsList.vue'
+      ),
+  },
   // {
   //   path: '/register',
   //   name: 'register.index',
@@ -132,19 +144,7 @@ let routes = [
   //   // ],
   // },
   //
-  // {
-  //   path: '/images/',
-  //   name: 'images.index',
-  //   meta: {
-  //     auth: true,
-  //   },
-  //   component: () =>
-  //     import(
-  //       /* webpackChunkName: "images.index" */
-  //
-  //       '../views/images/ImagesIndex.vue'
-  //     ),
-  // },
+
   // {
   //   path: '/images/create',
   //   name: 'images.create',

@@ -1,10 +1,10 @@
 <template>
-  <v-app>
-    <v-navigation-drawer app  dark permanent width="200" v-if="authenticated">
+  <v-app >
+    <v-navigation-drawer app permanent width="200" v-if="authenticated">
       <main-nav></main-nav>
     </v-navigation-drawer>
 
-    <v-main>
+    <v-main >
       <router-view />
     </v-main>
     <messages></messages>

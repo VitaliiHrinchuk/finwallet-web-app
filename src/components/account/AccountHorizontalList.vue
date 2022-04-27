@@ -3,17 +3,20 @@
 
     <v-row >
       <v-col cols="12">
-        <div class="title">Your Accounts</div>
+          <div class="d-flex">
+            <div class="title">Your Accounts</div>
+            <v-btn :to="{ name: 'account.index'}" light icon><v-icon>mdi-cog</v-icon></v-btn>
+          </div>
       </v-col>
       <v-col cols="2" v-for="account in list" :key="account.id" class="mb-2">
-        <AccountCard
+        <account-card
             :name="account.name"
             :color="account.hexColor"
             :amount="account.amount"
             :currency="account.currency"
         >
 
-        </AccountCard>
+        </account-card>
       </v-col>
     </v-row>
   </v-container>
@@ -28,13 +31,16 @@ export default {
   components: {
     AccountCard
   },
+  methods: {
+    ...mapActions('account', {
+      fetch: 'fetch'
+    })
+  },
   computed: {
     ...mapState('account', {
       list: 'list'
     }),
-    ...mapActions('account', {
-      fetch: 'fetch'
-    })
+
   },
   created() {
     this.fetch();
