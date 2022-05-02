@@ -20,7 +20,7 @@ const api = {
   },
   account: {
     browse(params = {}) {
-      return http.get('/accounts', { params })
+      return http.get('/accounts', params)
     },
     create(body){
       return http.post(`/accounts`, body);
@@ -33,11 +33,17 @@ const api = {
     },
     remove(id){
       return http.delete(`/accounts/${id}`);
-    }
+    },
+  },
+  analytics: {
+    fetch(params = {}) {
+      return http.get('/accounts/analytics', params)
+    },
+
   },
   category: {
     browse(params = {}) {
-      return http.get('/category', { params })
+      return http.get('/category', params)
     },
     create(body){
       return http.post(`/category`, body);
@@ -71,7 +77,7 @@ const api = {
   },
   transaction: {
     browse(params = {}) {
-      return http.get('/transaction', { params })
+      return http.get('/transaction', params)
     },
     create(body){
       return http.post(`/transaction`, body);

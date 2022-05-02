@@ -1,5 +1,5 @@
 <template>
-  <v-card elevation="0" dark rounded class="rounded-xl">
+  <v-card elevation="0" dark rounded class="rounded-xl" :style="{ opacity: opacity }" @click="$emit('select')">
     <v-row align="center">
       <v-col cols="2"  >
         <v-sheet
@@ -28,7 +28,8 @@ export default {
     name: String,
     currency: String,
     color: String,
-    amount: Number
+    amount: Number,
+    disabled: Boolean
   },
   name: "AccountCard",
   computed: {
@@ -37,6 +38,9 @@ export default {
     },
     formattedAmount() {
       return this.amount.toFixed(2);
+    },
+    opacity() {
+      return this.disabled ? .5 : 1;
     }
   }
 }

@@ -33,8 +33,8 @@ export default {
     },
     monthFirstAndLastDay() {
       return {
-        start: moment(this.value).startOf('month').toDate(),
-        end: moment(this.value).endOf('month').toDate(),
+        start: moment(this.value).startOf('month').toISOString(),
+        end: moment(this.value).endOf('month').toISOString(),
       }
     }
   },

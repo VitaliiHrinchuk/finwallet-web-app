@@ -1,13 +1,16 @@
+import _ from 'lodash';
 import api from '../../api';
 import { getField, updateField } from 'vuex-map-fields';
-import instance from './instance/transaction';
-import _ from "lodash";
+import instance from "./instance/account";
+import moment from "moment";
 
 let initialState = {
-    data: [],
     query: {
-        limit: 999
+
+        transactionType: 'CRE'
     },
+    date: null,
+    category: null,
     loading: false,
 };
 
@@ -17,20 +20,25 @@ const state = () => ({
 
 const getters = {
     getField,
-    entities(state) {
-        return _.get(state, 'data', []) || [];
+    monthly(state) {
+        return _.get(state, 'date', []) || [];
     }
 };
 
 const actions = {
-    async fetch({ commit, state }) {
+    async fetch({ commit, state }, query) {
         try {
             commit('setLoading', true);
 
-            const response  = await api.transaction.browse(state.query);
-            console.log('len!', response.data)
+            const response  = await api.analytics.fetch(query);
+
             commit('setLoading', false);
-            commit('applyFetchedList', response.data.data);
+            // commit('applyFetched', {
+            //     type,
+            //     data: response.data.data
+            // });
+
+            return response.data.data;
         } catch (error) {
             commit('setLoading', false);
             console.log(error);
@@ -45,18 +53,19 @@ const actions = {
 
 const mutations = {
     updateField,
+    applyFetched(state, payload) {
+        state[payload.type] = payload.data;
+    },
     setLoading(state, status) {
         state.loading = status;
     },
-    applyFetchedList(state, data) {
-        state.data = [...data];
-    },
+
 
 };
+
 const modules = {
     instance: instance,
 };
-
 export default {
     namespaced: true,
     state,

@@ -14,7 +14,8 @@ const state = {
 
 const getters = {
   id: (state) => _.get(state, 'user.id', null),
-  email: (state) => _.get(state, 'user.email', null)
+  email: (state) => _.get(state, 'user.email', null),
+  baseCurrency: (state) => _.get(state, 'user.baseCurrency', null)
 };
 
 const actions = {

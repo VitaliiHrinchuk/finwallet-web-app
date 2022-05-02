@@ -14,6 +14,8 @@
             :color="account.hexColor"
             :amount="account.amount"
             :currency="account.currency"
+            :disabled="!!selectedAccount && selectedAccount != account.id"
+            @select="() => $emit('change', account)"
         >
 
         </account-card>
@@ -28,6 +30,9 @@ import {mapActions, mapGetters, mapState} from "vuex";
 
 export default {
   name: "AccountHorizontalList",
+  props: {
+    selectedAccount: String
+  },
   components: {
     AccountCard
   },
