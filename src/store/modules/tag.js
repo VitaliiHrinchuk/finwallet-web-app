@@ -1,5 +1,6 @@
 import api from '../../api';
 import { getField, updateField } from 'vuex-map-fields';
+import _ from "lodash";
 
 let initialState = {
     list: [],
@@ -13,6 +14,9 @@ const state = () => ({
 
 const getters = {
     getField,
+    entities(state) {
+        return _.get(state, 'list', []) || [];
+    }
 };
 
 const actions = {

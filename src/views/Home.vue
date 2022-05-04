@@ -28,7 +28,18 @@
       </v-row>
 
     </v-sheet>
-
+    <transaction-edit-modal @close="showTransactionModal = false" :show="showTransactionModal"></transaction-edit-modal>
+    <v-btn
+        color="primary"
+        @click="showTransactionModal = true"
+        dark
+        fixed
+        bottom
+        right
+        fab
+    >
+      <v-icon>mdi-plus</v-icon>
+    </v-btn>
   </v-layout>
 </template>
 
@@ -42,9 +53,11 @@ import {mapFields} from "vuex-map-fields";
 import moment from "moment";
 import TransactionByCategoryChart from "../components/statistics/TransactionByCategoryChart";
 import TransactionGroupedList from "../components/transaction/TransactionGroupedList";
+import TransactionEditModal from "../components/transaction/TransactionEditModal";
 export default {
   name: 'Home',
   components: {
+    TransactionEditModal,
     TransactionGroupedList,
     TransactionByCategoryChart,
     MonthlySpendsChart,
@@ -60,7 +73,8 @@ export default {
         startDate: moment().startOf('month').toDate(),
         endDate: moment().endOf('month').toDate(),
         accountId: null
-      }
+      },
+      showTransactionModal: false,
     };
   },
   computed: {

@@ -2,7 +2,15 @@ import { getField, updateField } from 'vuex-map-fields';
 
 let initialState = {
     loading: false,
-
+    form: {
+        accountId: null,
+        currency: null,
+        categorySlug: null,
+        amount: null,
+        type: "CRE",
+        tags: [],
+        date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString()
+    }
 };
 
 const state = () => ({
@@ -26,10 +34,6 @@ const mutations = {
     setLoading(state, status) {
         state.loading = status;
     },
-    applyFetchedList(state, list) {
-        state.list = list;
-    },
-
 };
 
 

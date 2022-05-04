@@ -1,9 +1,7 @@
 <template>
   <v-list-item>
     <v-list-item-avatar>
-      <v-icon :color="iconColor">
-        {{icon}}
-      </v-icon>
+      <category-icon :slug="categorySlug" ></category-icon>
     </v-list-item-avatar>
     <v-list-item-content>
       <v-list-item-title class="d-flex justify-space-between align-center">
@@ -27,9 +25,11 @@
 
 <script>
 import {CATEGORY_COLORS, CATEGORY_ICONS} from "../../constants/categories";
+import CategoryIcon from "../category/CategoryIcon";
 
 export default {
   name: "TransactionListItem",
+  components: {CategoryIcon},
   props: {
     categorySlug: String,
     category: String,
@@ -40,12 +40,8 @@ export default {
     type: String
   },
   computed: {
-    icon() {
-      return CATEGORY_ICONS[this.categorySlug] || CATEGORY_ICONS['other'];
-    },
-    iconColor() {
-      return CATEGORY_COLORS[this.categorySlug] || CATEGORY_COLORS['other'];
-    },
+
+
     amountFormatted() {
       let prefix = '';
 

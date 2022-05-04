@@ -15,6 +15,9 @@ const state = () => ({
 
 const getters = {
     getField,
+    entities(state) {
+        return _.get(state, 'list', []) || [];
+    }
 };
 
 const actions = {
