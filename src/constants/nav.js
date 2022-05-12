@@ -9,11 +9,11 @@ const NAV_ITEMS = [
         icon: 'mdi-select-group',
         title: 'Accounts',
     },
-    // {
-    //     path: 'statistics.list',
-    //     icon: 'mdi-select-group',
-    //     title: 'Statistics',
-    // },
+    {
+        path: 'category.list',
+        icon: 'mdi-shape',
+        title: 'Categories and Tags',
+    },
     // {
     //     path: 'transactions.list',
     //     icon: 'mdi-select-group',

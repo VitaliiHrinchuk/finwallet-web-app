@@ -5,13 +5,8 @@ import moment from "moment";
 let initialState = {
     loading: false,
     form: {
-        accountId: null,
-        currency: null,
-        categorySlug: null,
-        amount: null,
-        type: "CRE",
-        tags: [],
-        date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString()
+        name: null,
+        id: null
     }
 };
 
@@ -28,11 +23,16 @@ const actions = {
         try {
             const body = {
                 ...state.form,
-                date: moment(state.form.date, 'YYYY-MM-DD').toISOString()
             };
             commit('setLoading', true);
 
-            await api.transaction.create(body);
+            if (state.form.id) {
+                await api.tag.update(state.form.id, body);
+            } else {
+                await api.tag.create(body);
+            }
+
+
 
             commit('setLoading', false);
 
@@ -40,7 +40,7 @@ const actions = {
                 'message/put',
                 {
                     type: 'success',
-                    text: 'Transaction Successfully created',
+                    text: 'Category Successfully saved',
                 },
                 { root: true }
             );
@@ -62,11 +62,9 @@ const mutations = {
     },
     applyClearData(state) {
         state.form = {
-            ...state.form,
-            categorySlug: null,
-            amount: null,
-            tags: [],
-            date: (new Date(Date.now() - (new Date()).getTimezoneOffset() * 60000)).toISOString()
+            id: null,
+            name: null,
+            type: 'CRE'
         }
     },
 };

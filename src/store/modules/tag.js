@@ -1,6 +1,7 @@
 import api from '../../api';
 import { getField, updateField } from 'vuex-map-fields';
 import _ from "lodash";
+import instance from "./instance/tag";
 
 let initialState = {
     list: [],
@@ -50,10 +51,14 @@ const mutations = {
     },
 
 };
+const modules = {
+    instance: instance,
+};
 export default {
     namespaced: true,
     state,
     getters,
     mutations,
+    modules,
     actions,
 };

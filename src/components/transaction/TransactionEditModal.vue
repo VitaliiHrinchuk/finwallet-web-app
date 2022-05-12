@@ -17,11 +17,26 @@
       </v-card-title>
       <v-card-text>
         <v-container>
-          {{form}}
           <v-row>
-            <v-col cols="8">
+            <v-col cols="12">
+              <div class="text-center">
+                <v-btn-toggle
+                    v-model="type"
+                    rounded
+                >
+                  <v-btn value="CRE">
+                    Expense
+                  </v-btn>
+                  <v-btn value="DEB">
+                    Income
+                  </v-btn>
+                </v-btn-toggle>
+              </div>
+            </v-col>
+            <v-col cols="6">
               <v-text-field
-                  v-model="amount"
+                  :value="amount"
+                  @input="(val) => amount = parseFloat(val)"
                   filled
                   label="Amount"
                   type="number"
@@ -29,14 +44,14 @@
                   hide-details>
               </v-text-field>
             </v-col>
-            <v-col cols="4">
+            <v-col cols="6">
               <currency-picker v-model="currency"></currency-picker>
             </v-col>
             <v-col cols="12">
               <account-picker v-model="accountId"></account-picker>
             </v-col>
             <v-col cols="12">
-              <category-picker v-model="categorySlug"></category-picker>
+              <category-picker :type="type" v-model="categorySlug"></category-picker>
             </v-col>
             <v-col cols="12">
               <tag-picker v-model="tags"></tag-picker>
@@ -77,7 +92,8 @@
         <v-btn
             color="primary"
             block
-            @click="save"
+            :loading="loading"
+            @click="submit"
         >
           Save
         </v-btn>
@@ -94,6 +110,7 @@ import CategoryPicker from "../category/CategoryPicker";
 import TagPicker from "../tag/TagPicker";
 import {mapFields} from "vuex-map-fields";
 import moment from "moment";
+import {mapActions, mapGetters, mapState} from "vuex";
 
 export default {
   props: [
@@ -113,12 +130,24 @@ export default {
     }
   },
   methods: {
+    ...mapActions('transaction/instance', {
+      save: 'save',
+      clear: 'clearData'
+    }),
+    async submit() {
+      try {
+        await this.save();
+        this.clear();
+        this.$emit('close');
+      } catch (error) {
+        console.log('error', error)
+      }
+    },
     formatDate (date) {
       if (!date) return null
 
       return moment(date).format('DD-MM-YYYY')
     },
-    save() {}
   },
   computed: {
     ...mapFields('transaction/instance', {
@@ -131,12 +160,21 @@ export default {
       tags: 'form.tags',
       date: 'form.date'
     }),
+    ...mapGetters('auth', {
+      baseCurrency: 'baseCurrency'
+    }),
+    ...mapState('transaction/instance', {
+      loading: 'loading'
+    }),
     dateFormatted () {
       return this.formatDate(this.date);
     },
     currencies() {
       return currencies;
     }
+  },
+  mounted() {
+    this.currency = this.baseCurrency;
   }
 }
 </script>

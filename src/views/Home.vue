@@ -28,7 +28,7 @@
       </v-row>
 
     </v-sheet>
-    <transaction-edit-modal @close="showTransactionModal = false" :show="showTransactionModal"></transaction-edit-modal>
+    <transaction-edit-modal @close="onTransactionModalClose" :show="showTransactionModal"></transaction-edit-modal>
     <v-btn
         color="primary"
         @click="showTransactionModal = true"
@@ -102,6 +102,9 @@ export default {
     ...mapActions('transaction', {
       fetchTransactions: 'fetch',
     }),
+    ...mapActions('account', {
+      fetchAccounts: 'fetch'
+    }),
     onMonthChange(dateRange) {
       this.filters = {
         ...this.filters,
@@ -110,6 +113,11 @@ export default {
       }
 
       this.refresh();
+    },
+    onTransactionModalClose(){
+      this.showTransactionModal = false;
+      this.refresh();
+      this.fetchAccounts();
     },
     async refreshAnalytics() {
       this.monthlyChartData = await this.fetchAnalytics({

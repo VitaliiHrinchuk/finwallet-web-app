@@ -1,6 +1,6 @@
 <template>
   <v-app >
-    <v-navigation-drawer app permanent width="200" v-if="authenticated">
+    <v-navigation-drawer app permanent width="250" v-if="authenticated">
       <main-nav></main-nav>
     </v-navigation-drawer>
 

@@ -28,6 +28,18 @@ let routes = [
         '../views/account/AccountsList.vue'
       ),
   },
+  {
+    path: '/categories/',
+    name: 'category.list',
+    meta: {
+      auth: true,
+    },
+    component: () =>
+        import(
+            /* webpackChunkName: "category.list" */
+            '../views/category/CategoryList.vue'
+            ),
+  },
   // {
   //   path: '/register',
   //   name: 'register.index',

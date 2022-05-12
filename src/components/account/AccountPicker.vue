@@ -52,10 +52,11 @@ export default {
     }),
 
   },
-  created() {
+  async mounted()  {
     if (this.items.length == 0) {
-      this.fetch();
+      await this.fetch();
     }
+    this.$emit('input', this.items[0].id);
   }
 }
 </script>
