@@ -8,7 +8,7 @@
       :item-value="(item) => item.id"
       :items="items"
       :loading="loading"
-      @input="(newValue) => this.$emit('input', newValue)">
+      @input="onInput">
       <template v-slot:selection="{ item, index }">
         <v-row no-gutters align="center">
           <v-icon left :color="'#'+item.hexColor">mdi-circle</v-icon>
@@ -36,7 +36,7 @@ import {mapActions, mapGetters, mapState} from "vuex";
 export default {
   name: "AccountPicker",
   props: [
-    "value"
+    "value", "withDefault"
   ],
   computed: {
     ...mapGetters('account', {
@@ -50,13 +50,20 @@ export default {
     ...mapActions('account', {
       fetch: 'fetch'
     }),
-
+    onInput(newValue) {
+      this.$emit('input', newValue)
+      this.$emit('change', newValue)
+    }
   },
   async mounted()  {
     if (this.items.length == 0) {
       await this.fetch();
     }
-    this.$emit('input', this.items[0].id);
+    if(this.withDefault) {
+      this.$emit('input', this.items[0].id);
+    }
+
+
   }
 }
 </script>

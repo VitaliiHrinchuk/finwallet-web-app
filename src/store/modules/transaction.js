@@ -2,12 +2,21 @@ import api from '../../api';
 import { getField, updateField } from 'vuex-map-fields';
 import instance from './instance/transaction';
 import _ from "lodash";
+import moment from "moment";
 
 let initialState = {
     data: [],
     query: {
-        limit: 999
+        limit: 999,
+        startDate: moment().startOf('month').toDate(),
+        endDate: moment().endOf('month').toDate(),
+        accountId: null,
+        categories: [],
+        type: null
     },
+    // filters: {
+    //
+    // },
     loading: false,
 };
 

@@ -32,6 +32,7 @@ export default (baseURL) => {
       params: query_params,
       paramsSerializer: function(params) {
         return qs.stringify(params, {
+          skipNulls: true,
           arrayFormat: 'indices',
           encode: false,
         });

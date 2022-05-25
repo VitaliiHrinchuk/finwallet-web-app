@@ -48,7 +48,7 @@
               <currency-picker v-model="currency"></currency-picker>
             </v-col>
             <v-col cols="12">
-              <account-picker v-model="accountId"></account-picker>
+              <account-picker with-default v-model="accountId"></account-picker>
             </v-col>
             <v-col cols="12">
               <category-picker :type="type" v-model="categorySlug"></category-picker>

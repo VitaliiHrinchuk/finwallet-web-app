@@ -1,6 +1,6 @@
 <template>
   <v-layout column fill-height>
-    <v-list dense>
+    <v-list two-line>
       <v-list-item>
         <v-list-item-content>
           <v-list-item-title class="title">FinWallet</v-list-item-title>
@@ -8,12 +8,13 @@
         </v-list-item-content>
       </v-list-item>
       <template v-for="(item, i) in nav">
-        <v-list-item link :to="{ name: item.path }" exact :key="item.title">
-          <v-list-item-action>
+        <v-list-item link :to="{ name: item.path }" exact :key="item.title" >
+          <v-list-item-avatar>
             <v-icon color="primary">{{ item.icon }}</v-icon>
-          </v-list-item-action>
+          </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
+
           </v-list-item-content>
         </v-list-item>
       </template>

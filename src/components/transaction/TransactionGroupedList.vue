@@ -25,10 +25,10 @@
               <div v-for="(listItem, i) in list" :key="i">
                 <v-subheader class="d-flex justify-space-between" v-if="listItem.divider">
 
-                  <div>
-                    {{ listItem.leadingTitle }}
+                  <div class="black--text">
+                    <b>{{ listItem.leadingTitle }}</b>
                   </div>
-                  <div>
+                  <div class="black--text">
                     {{ listItem.trailingTitle }}
                   </div>
 
@@ -132,18 +132,18 @@ export default {
     _getTotalByGroup(name) {
       return this.data.reduce((prev, current) => {
         if(current.category.name == name) {
-          return prev + (current.transactionType == 'CRE' ? -current.amount : current.amount)
+          return prev + (current.transactionType == 'CRE' ? -current.baseCurrencyAmount : current.baseCurrencyAmount)
         }
         return prev;
-      }, 0);
+      }, 0).toFixed(2);
     },
     _getTotalByDate(date) {
       return this.data.reduce((prev, current) => {
         if(moment(current.transactionDate).format('yyyy-MM-DD') == date.format('yyyy-MM-DD')) {
-          return prev + (current.transactionType == 'CRE' ? -current.amount : current.amount)
+          return prev + (current.transactionType == 'CRE' ? -current.baseCurrencyAmount : current.baseCurrencyAmount)
         }
         return prev;
-      }, 0);
+      }, 0).toFixed(2);
     }
   }
 }

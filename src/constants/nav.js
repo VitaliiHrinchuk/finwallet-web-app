@@ -10,6 +10,11 @@ const NAV_ITEMS = [
         title: 'Accounts',
     },
     {
+        path: 'transaction.list',
+        icon: 'mdi-format-list-text',
+        title: 'Records',
+    },
+    {
         path: 'category.list',
         icon: 'mdi-shape',
         title: 'Categories and Tags',

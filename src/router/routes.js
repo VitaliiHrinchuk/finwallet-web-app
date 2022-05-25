@@ -40,6 +40,18 @@ let routes = [
             '../views/category/CategoryList.vue'
             ),
   },
+  {
+    path: '/transactions/',
+    name: 'transaction.list',
+    meta: {
+      auth: true,
+    },
+    component: () =>
+        import(
+            /* webpackChunkName: "transaction.list" */
+            '../views/transaction/TransactionList.vue'
+            ),
+  },
   // {
   //   path: '/register',
   //   name: 'register.index',
