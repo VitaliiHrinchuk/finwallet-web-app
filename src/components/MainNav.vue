@@ -3,8 +3,11 @@
     <v-list two-line>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title class="title">FinWallet</v-list-item-title>
-          <v-list-item-subtitle>{{ email }}</v-list-item-subtitle>
+          <v-list-item-title class="title d-flex align-center mb-2">
+            <img src="../assets/icon.png" width="50" alt="" class="mr-3" />
+            <span>FinWallet</span></v-list-item-title>
+          <v-list-item-subtitle>{{ email }}
+          </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
       <template v-for="(item, i) in nav">

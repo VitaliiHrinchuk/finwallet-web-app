@@ -1,5 +1,5 @@
 <template>
-  <v-layout class=" p-0" column>
+  <v-layout class=" p-0" column >
     <home-header class="pb-10">
       <account-horizontal-list @change="onAccountChange" :selectedAccount="filters.accountId" class="pb-5"></account-horizontal-list>
     </home-header>onAccountChange

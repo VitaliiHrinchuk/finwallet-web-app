@@ -1,10 +1,10 @@
 <template>
-  <v-layout fill-height justify-center align-center class="white">
+  <v-layout fill-height justify-center align-center class="white d-flex flex-column">
+    <div class="text-center my-10">
+      <img src="../../assets/logo.png" alt="" />
+    </div>
     <v-form ref="form" v-model="valid" lazy-validation style="min-width:500px">
-      <div class="text-center">
-        <img src="../../assets/logo.png" alt="" />
-      </div>
-      <h1 class="text-center">Login</h1>
+      <h2 class="text-center mb-10">Login</h2>
       <v-text-field filled v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
       <v-text-field
           v-model="password"

@@ -21,7 +21,7 @@
       >
         <v-card flat>
           <v-list class="overflow-y-auto" :max-height="maxHeight" :min-height="maxHeight">
-            <v-slide-y-transition group>
+            <v-slide-y-transition group v-if="list.length > 0">
               <div v-for="(listItem, i) in list" :key="i">
                 <v-subheader class="d-flex justify-space-between" v-if="listItem.divider">
 
@@ -45,6 +45,7 @@
                 />
               </div>
             </v-slide-y-transition>
+            <content-placeholder title="Looks like you don't have any transaction by your query" v-else></content-placeholder>
           </v-list>
         </v-card>
       </v-tab-item>
@@ -57,10 +58,11 @@ import TransactionListItem from "./TransactionListItem";
 import moment from "moment";
 import _ from 'lodash';
 import {mapGetters} from "vuex";
+import ContentPlaceholder from "../common/ContentPlaceholder";
 
 export default {
   name: "TransactionGroupedList",
-  components: {TransactionListItem},
+  components: {ContentPlaceholder, TransactionListItem},
   props: {
     data: Array,
     maxHeight: {

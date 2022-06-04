@@ -1,9 +1,12 @@
 <template>
   <v-sheet max-height="400" >
+
     <doughnut-chart
+        v-if="data.length > 0"
         :chart-data="chartData"
         :options="options"
     ></doughnut-chart>
+    <content-placeholder title="Looks like you don't have any transaction by selected month" v-else></content-placeholder>
   </v-sheet>
 </template>
 
@@ -12,9 +15,10 @@
 import moment from "moment";
 import DoughnutChart from "./DoughnutChart";
 import { CATEGORY_COLORS } from '../../constants/categories'
+import ContentPlaceholder from "../common/ContentPlaceholder";
 export default {
   name: "TransactionByCategoryChart",
-  components: {DoughnutChart},
+  components: {ContentPlaceholder, DoughnutChart},
   props: {
     data: {
       type: Array,
